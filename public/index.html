@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>點餐紀錄系統</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="background-orbit background-orbit-a"></div>
+  <div class="background-orbit background-orbit-b"></div>
+
+  <main class="shell">
+    <section class="hero card">
+      <div>
+        <p class="eyebrow">Order Tracker</p>
+        <h1>點餐紀錄系統</h1>
+        <p class="lead">選餐、送出、保存紀錄。這個網站會把你點了什麼、點了幾份，完整存下來。</p>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <span id="total-orders">0</span>
+          <small>筆訂單</small>
+        </div>
+        <div>
+          <span id="today-revenue">$0</span>
+          <small>總金額</small>
+        </div>
+        <div>
+          <span id="item-count">0</span>
+          <small>品項數</small>
+        </div>
+        <div>
+          <span id="discount-total">$0</span>
+          <small>折扣總額</small>
+        </div>
+      </div>
+    </section>
+
+    <section class="grid">
+      <article class="card menu-card">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">Menu</p>
+            <h2>餐點清單</h2>
+          </div>
+          <p class="muted">勾選餐點後輸入數量即可加入訂單。</p>
+        </div>
+        <div id="menu-list" class="menu-list"></div>
+      </article>
+
+      <article class="card form-card">
+        <div class="section-header">
+          <div>
+            <p class="eyebrow">Checkout</p>
+            <h2>送出訂單</h2>
+          </div>
+        </div>
+
+        <form id="order-form" class="order-form">
+          <div id="edit-banner" class="edit-banner hidden">
+            <div>
+              <strong>正在編輯訂單</strong>
+              <p>修改內容後按下送出即可更新原本的紀錄。</p>
+            </div>
+            <button type="button" id="cancel-edit" class="ghost-button">取消編輯</button>
+          </div>
+
+          <label>
+            顧客姓名
+            <input id="customer-name" type="text" placeholder="請輸入姓名" required>
+          </label>
+
+          <label>
+            備註
+            <textarea id="note" rows="3" placeholder="例如：不要辣、少冰"></textarea>
+          </label>
+
+          <div class="selected-box">
+            <div class="selected-header">
+              <h3>已選餐點</h3>
+              <button type="button" id="clear-selection" class="ghost-button">清空</button>
+            </div>
+            <div id="selected-items" class="selected-items empty">尚未選擇餐點</div>
+            <div id="order-summary" class="order-summary hidden"></div>
+          </div>
+
+          <button type="submit" class="primary-button">送出並儲存</button>
+          <p id="form-message" class="message"></p>
+        </form>
+      </article>
+    </section>
+
+    <section class="card history-card">
+      <div class="section-header">
+        <div>
+          <p class="eyebrow">History</p>
+          <h2>訂單紀錄</h2>
+        </div>
+        <button id="refresh-history" type="button" class="ghost-button">重新整理</button>
+      </div>
+      <div id="order-history" class="history-list"></div>
+    </section>
+  </main>
+
+  <template id="menu-template">
+    <button type="button" class="menu-item">
+      <div>
+        <strong class="menu-name"></strong>
+        <p class="menu-meta"></p>
+      </div>
+      <span class="menu-price"></span>
+    </button>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
